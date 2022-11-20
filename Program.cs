@@ -2,7 +2,7 @@
 
 using System;
 using CommandLine;
-using Microsoft.VisualStudio.PlatformUI;
+using ShareX_Log_Automation_Console.Helpers;
 using ShareX_Log_Automation_Console.Models;
 
 #if DEBUG
@@ -84,9 +84,9 @@ if (arg.MovingDestination != String.Empty)
         {
             if (arg.DryRun)
             {
-                Console.WriteLine($"DRY-RUN Moving: {item.Value.FullPath} -> {dest}");
+                Console.WriteLine($"DRY-RUN Moving: {item.Value.FullPath} -> {dest}, {File.Exists(item.Value.FullPath)}");
             }
-            else
+            else if (File.Exists(item.Value.FullPath))
             {
                 File.Move(item.Value.FullPath, dest);
             }

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
-using Microsoft.VisualStudio.PlatformUI;
+using ShareX_Log_Automation_Console.Helpers;
+//using Microsoft.VisualStudio.PlatformUI;
 
 namespace ShareX_Log_Automation_Console.Models
 {
