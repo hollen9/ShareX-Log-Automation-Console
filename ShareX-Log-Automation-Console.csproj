@@ -6,7 +6,13 @@
     <RootNamespace>ShareX_Log_Automation_Console</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>ShareX-LogAuto</AssemblyName>
+	<!--<TargetName>ShareX-LogAuto</TargetName>-->
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include=".powershell\SelectLogFileAndStart.ps1" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />

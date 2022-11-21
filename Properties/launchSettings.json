@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ShareX-Log-Automation-Console": {
+      "commandName": "Project",
+      "commandLineArgs": " --log-path=\"E:\\Libraries\\Documents\\ShareX\\Logs\\ShareX-Log-2022-11.txt\" --only-src=\"J:\\Libraries\\Videos\\NVCaptured\\Counter-strike  Global Offensive\" --move-dest=\"J:\\Libraries\\Videos\\NVCaptured\\Counter-strike  Global Offensive\\toBeRemoved\""
+    }
+  }
+}

@@ -6,7 +6,7 @@ using ShareX_Log_Automation_Console.Helpers;
 using ShareX_Log_Automation_Console.Models;
 
 #if DEBUG
-args = new string[] { "--log-path=\"" + @"E:\Libraries\Documents\ShareX\Logs\ShareX-Log-2022-11.txt" + "\"" };
+//args = new string[] { "--log-path=\"" + @"E:\Libraries\Documents\ShareX\Logs\ShareX-Log-2022-11.txt" + "\"" };
 #endif
 var pr = Parser.Default.ParseArguments<LaunchOptions>(args);
 
@@ -22,7 +22,7 @@ arg.OnlySource = @"J:\Libraries\Videos\NVCaptured\Counter-strike  Global Offensi
 arg.DryRun = true;
 #endif
 arg.Normalize();
-if (arg.MovingDestination != String.Empty)
+if (!string.IsNullOrEmpty(arg.MovingDestination))
 {
     if (!Directory.Exists(arg.MovingDestination))
     {
@@ -41,7 +41,23 @@ foreach (var line in lines)
         if (keyword == "Upload started.")
         {
             string raw_fn_and_fullpath = line[52..];
-            var raws = raw_fn_and_fullpath.Split(", Filepath: ");
+            string[] seperators = new string[] { ", File path: ", ", Filepath: " };
+            int iSep = -1;
+            for (iSep = 0; iSep < seperators.Length; iSep++)
+            {
+                var sep = seperators[iSep];
+                if (raw_fn_and_fullpath.Contains(sep))
+                {
+                    break;
+                }
+            }
+            if (iSep == -1)
+            {
+                Console.WriteLine("This line is recognized as 'upload started', but it failed to extract file info.");
+                continue;
+            }
+            
+            var raws = raw_fn_and_fullpath.Split(seperators[iSep]);
             if (dictSharexJob.ContainsKey(raws[0]))
             {
                 continue;
